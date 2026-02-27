@@ -1,5 +1,4 @@
 name: build ebook
-
 on:
   push:
     branches:
@@ -7,17 +6,16 @@ on:
   pull_request:
     branches:
       - master
-
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
       SHA: ${{ github.sha }}
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '12.18.2'
+          node-version: '20'
       - run: sudo apt update
       - run: sudo apt install libegl1 libopengl0 libxcb-cursor-dev
       - run: sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
